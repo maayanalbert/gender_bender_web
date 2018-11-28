@@ -20,5 +20,6 @@ import genderbender.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', genderbender.views.default),
-    path("bend_input", genderbender.views.bendInput, name = "bend_input")
+    path("bend_input", genderbender.views.bendInput, name = "bend_input"),
+    path("get_novel", genderbender.views.getNovel, name = "get_novel")
 ]

@@ -14,44 +14,76 @@
 
   </head>
 
-  <body style="background-color: rgb(30, 30, 30)">
+  <body style="background-color: rgb(255, 255, 255)">
 
     <!-- The navebar -->
-    <nav class="navbar" style="background-color: rgb(30, 30, 30);">
-      <a style="color:rgb(230,60,100)"
+    <nav class="navbar" style="background-color: rgb(255, 255, 255);">
+      <a style="color:rgb(69,122,251)"
           class="navbar-brand" 
           href="#">Gender Bender</a>
     </nav>
 
+    <div class="row">
 
-    <form class="col-md-8 mt-3 offset-2"  method='post' action={% url 'bend_input' %}>
+    <form class="col-md-6 mt-3 offset-2 col"  method='post' action={% url 'bend_input' %}>
       
       <!-- The core textbox -->
       <div class = "pt-3 pb-2">
-        <textarea placeholder="Text..." name="string" cols="40" rows="5" 
-          style="resize:none; font-size: 30pt; border:none;
-          background-color: rgb(30, 30, 30); color:rgb(250, 250, 250)" 
+        <textarea placeholder="Text..." name="string" cols="40" rows="14" 
+          style="resize:none; font-size: 12pt; border:none;
+          background-color: rgb(255, 255, 255); font-family: Times New Roman;
+          color:rgb(0, 0, 0)" 
           class='form-control text-md'>{{bentString}}</textarea>
       </div>
 
-    
-      <!-- The year textbox -->
-      <div class="col pb-3 pt-3 col-md-6">
-        <input style="font-size: 16pt;border:none; 
-          background-color:rgb(30, 30, 30); color:rgb(200, 200, 200)" 
+  <div class="form-row col-md-6 pt-4">
+    <div class="col">
+        <input style="font-size: 12pt; 
+          background-color:rgb(255, 255, 255); color:rgb(100, 100, 100)" 
           name="year" class='input-lg form-control input-group-lg' 
-          rows="5" value="{{year}}" placeholder="Year published (optional)">
-      </div>
-
-      <!-- The submit button -->
-      <div class="col col-md-4 pt-0">
-        <button class="btn btn-block btn-lg" style="font-size: 16pt; 
-        background-color: rgb(230, 60, 100);color:rgb(255,255,255)"
+          rows="5" value="{{year}}" placeholder="Year published">
+    </div>
+    <div class="col">
+        <button class="btn btn-block btn-primary" style="font-size: 12pt;"
         type="submit">GenderBend!</button>
-      </div>
+    </div>
+  </div> 
+  {% csrf_token %}
+  </form>  
 
-
-
-    {% csrf_token %}
+    <div class="col">
+    <div class="col-md-6 pb-3">Populate with:</div>
+    <break>
+    <form  class="col-md-6" method='post' action={% url 'get_novel' %}>
+      <input type = "hidden" name="novelYear" value="1813">
+      <input type = "hidden" name="novel" value="pride_and_prejudice">
+      <button type="submit" class="btn btn-link">- Pride and Prejudice</button>
+      {% csrf_token %}
     </form>
-</body></html>
+
+    <form  class="col-md-6" method='post' action={% url 'get_novel' %}>
+      <input type = "hidden" name="novelYear" value="1925">
+      <input type = "hidden" name="novel" value="the_great_gatsby">
+      <button type="submit" class="btn btn-link">- The Great Gatsby</button>
+      {% csrf_token %}
+    </form>
+
+    <form  class="col-md-6 " method='post' action={% url 'get_novel' %}>
+      <input type = "hidden" name="novelYear" value="1933">
+      <input type = "hidden" name="novel" value="mary_poppins">
+      <button type="submit" class="btn btn-link">- Mary Poppins</button>
+      {% csrf_token %}
+    </form>
+
+    <form  class="col-md-6" method='post' action={% url 'get_novel' %}>
+      <input type = "hidden" name="novelYear" value="1997">
+      <input type = "hidden" name="novel" value="harry_potter">
+      <button type="submit" class="btn btn-link">- Harry Potter</button>
+      {% csrf_token %}
+    </form>
+
+  </div> 
+  </div> 
+
+</body>
+</html>

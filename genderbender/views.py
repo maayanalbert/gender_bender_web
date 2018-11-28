@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .genderBender import bend
+import os
 
 # default view
 def default(request):
@@ -36,6 +37,16 @@ def bendInput(request):
     context["bentString"] = bentString
     if(year != None):
         context["year"] = year
-        
+
+    return render(request, 'genderbender/index.html',context)
+
+def getNovel(request):
+    novel = request.POST.get('novel')
+    novelYear = request.POST.get('novelYear')
+    module_dir = os.path.dirname(__file__)  
+    file_path = os.path.join(module_dir, "novels/" + novel + ".txt")
+    context = dict()
+    context["bentString"] = open(file_path, "r").read()
+    context["year"] = novelYear
     return render(request, 'genderbender/index.html',context)
 
