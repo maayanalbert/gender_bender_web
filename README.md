@@ -11,15 +11,11 @@ The web app was built in Django and deployed using Heroku.
 
 ### Files of Interest
 Many of the files in this repository are a part of the basic Django framework. The interesting ones are:
-
-Frontend: gender_bender_web/genderbender/templates/genderbender/index.html
-
-Backend: gender_bender_web/genderbender/views.py
-
-Genderbending Algorithm:
-- gender_bender_web/genderbender/genderBender.py 
-- gender_bender_web/genderbender/nameDictMaker.py
-- gender_bender_web/genderbender/pronounDictMaker.py
+- gender_bender_web/genderbender/templates/genderbender/index.html (frontend)
+- gender_bender_web/genderbender/views.py (backend)
+- gender_bender_web/genderbender/genderBender.py (genderbending algorithm)
+- gender_bender_web/genderbender/nameDictMaker.py (genderbending algorithm)
+- gender_bender_web/genderbender/pronounDictMaker.py (genderbending algorithm)
 
 # How it works
 I used find and replace algorithm that basically found all of the gendered pronouns and names and replaced them with the opposit gender. Although this method doesn't work perfectly (ML would probably be the best way to yeild completely accurare results) it produces beleivable results.
