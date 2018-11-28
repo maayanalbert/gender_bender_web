@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import genderbender.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', genderbender.views.default),
+    path("bend_input", genderbender.views.bendInput, name = "bend_input")
 ]

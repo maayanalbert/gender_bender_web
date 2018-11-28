@@ -1,0 +1,35 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Cover Template for Bootstrap</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
+
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link  type="text/css" href="{% static 'genderbender/bootstrap.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <form class="col-md-4 mt-3 offset-4"  method='post' action={% url 'bend_input' %}>
+      <div class="form-group row">
+<!--     <label for="staticEmail" class="col-sm-4 col-form-label">Bio</label> -->
+    <div class="col-sm-8">
+      <input name="string" class='form-control' value="{{string}}">
+    </div>
+  </div>
+        <button class="btn btn-secondary btn-block" type="submit">Genderbend!</button>
+        {% csrf_token %}
+    </form>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+</body></html>
