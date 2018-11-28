@@ -19,7 +19,7 @@
     <!-- The navbar -->
     <nav class="navbar " style="background-color: rgb(255, 255, 255);">
       <a 
-          class="navbar-brand text-primary" 
+          class="navbar-brand" style="color:{{curColor}};" 
           href="#">Gender Bender</a>
     </nav>
 
@@ -30,7 +30,7 @@
       
         <!-- The core textbox -->
         <div class = "pt-3 pb-2">
-          <textarea placeholder="Text..." name="string" cols="40"  
+          <textarea placeholder="{{defaultText}}" name="string" cols="40"  
             style="resize:none; font-size: 12pt; border:none; height:60%;
             background-color: rgb(255, 255, 255); font-family: Times New Roman;
             color:rgb(0, 0, 0)" 
@@ -44,13 +44,14 @@
             <input style="font-size: 12pt; 
               background-color:rgb(255, 255, 255); color:rgb(100, 100, 100)" 
               name="year" class='input-lg form-control input-group-lg' 
-              rows="5" value="{{year}}" placeholder="Year published">
+              rows="5" value="{{year}}" placeholder="Year">
           </div>
           
           <!-- The genderbend button -->
           <div class="col">
-            <button class="btn btn-block btn-primary" style="font-size: 12pt;"
-              type="submit">Genderbend!</button>
+            <button class="btn btn-block" style="font-size: 12pt;color:rgb(255, 255, 255);
+              background-color: {{curColor}};" type="submit">Genderbend!</button>
+            <input type = "hidden" name="curColor" value="{{curColor}}">
           </div>
         </div> 
         {% csrf_token %}
@@ -66,7 +67,9 @@
         <form  class="col-md-3" method='post' action={% url 'get_novel' %}>
           <input type = "hidden" name="novelYear" value="1813">
           <input type = "hidden" name="novel" value="pride_and_prejudice">
-          <button type="submit" class="btn btn-link">- Pride and Prejudice</button>
+          <input type = "hidden" name="curColor" value="{{curColor}}">
+          <button type="submit" class="btn"style="background-color:
+            rgb(255, 255, 255);color: {{curColor}};">- Pride and Prejudice</button>
           {% csrf_token %}
         </form>
 
@@ -74,7 +77,9 @@
         <form  class="col-md-3" method='post' action={% url 'get_novel' %}>
           <input type = "hidden" name="novelYear" value="1925">
           <input type = "hidden" name="novel" value="the_great_gatsby">
-          <button type="submit" class="btn btn-link">- The Great Gatsby</button>
+          <input type = "hidden" name="curColor" value="{{curColor}}">
+          <button type="submit" class="btn"style="background-color:
+            rgb(255, 255, 255);color: {{curColor}};">- The Great Gatsby</button>
           {% csrf_token %}
         </form>
 
@@ -82,7 +87,9 @@
         <form  class="col-md-3 " method='post' action={% url 'get_novel' %}>
           <input type = "hidden" name="novelYear" value="1933">
           <input type = "hidden" name="novel" value="mary_poppins">
-          <button type="submit" class="btn btn-link">- Mary Poppins</button>
+          <input type = "hidden" name="curColor" value="{{curColor}}">
+          <button type="submit" class="btn"style="background-color:
+            rgb(255, 255, 255);color: {{curColor}};">- Mary Poppins</button>
           {% csrf_token %}
         </form>
 
@@ -90,7 +97,9 @@
         <form  class="col-md-3" method='post' action={% url 'get_novel' %}>
           <input type = "hidden" name="novelYear" value="1997">
           <input type = "hidden" name="novel" value="harry_potter">
-          <button type="submit" class="btn btn-link">- Harry Potter</button>
+          <input type = "hidden" name="curColor" value="{{curColor}}">
+          <button type="submit" class="btn"style="background-color:
+            rgb(255, 255, 255);color: {{curColor}};">- Harry Potter</button>
           {% csrf_token %}
         </form>
 

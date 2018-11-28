@@ -3,9 +3,40 @@ from django.http import HttpResponse
 from .genderBender import bend
 import os
 
-# default view
+
+# get the text to put in the input box when it's empty
+# INPUT: whether or not the person has hit genderbend yet
+# OUTPUT: a welcome message if they haven't and a prompt if they have 
+def getDefaultText(starting):
+    if(starting == True):
+        line1 = "Hello and welcome to Gender Bender!" + "\n\n"
+        line2 = "To get started, type some text in here or click on one of"
+        line3 = " the links to the right. Optionally, input the year the text"
+        line4 = " was written in to get historically accurate names. Then, click"
+        line5 = " the button below to start genderbending!"
+        return line1 + line2 + line3 + line4 + line5
+    else:
+        return "Write some text here..."
+
+# flip the accent color every time the user hits genderbend
+# INPUT: the current color or none
+# OUTPUT: the opposite color
+def flipAccentColor(curColor):
+    blue = "017AFE"
+    pink = "FC4664"
+    if(curColor == None or curColor == blue):
+        return pink
+    else:
+        return blue
+
+# serve the default view
+# INPUT: 
+# OUTPUT: the welcome message
 def default(request):
-    return render(request, 'genderbender/index.html',{})
+    context = dict()
+    context["defaultText"] = getDefaultText(True)
+    context["curColor"] = flipAccentColor(None)
+    return render(request, 'genderbender/index.html',context)
 
 # check if a string can be converted to an int
 # INPUT: the string in question
@@ -22,9 +53,10 @@ def returnIntOrNone(string):
 # OUTPUT: the the converted text 
 def bendInput(request):
 
-    # get the string and year
+    # get the string, year, and current color
     string = request.POST.get('string')
     year = returnIntOrNone(request.POST.get('year'))
+    curColor = request.POST.get('curColor')
 
     # bend the text (with the year if its valid)
     if(year == None):
@@ -35,6 +67,9 @@ def bendInput(request):
 
     # populate the response data
     context["bentString"] = bentString
+    context["defaultText"] = getDefaultText(False)
+    context["curColor"] = flipAccentColor(curColor)
+    print(curColor)
     if(year != None):
         context["year"] = year
 
@@ -45,9 +80,11 @@ def bendInput(request):
 # OUTPUT: the contents of the novel and the year it was written
 def getNovel(request):
 
-    # get the novel name and year it was written
+    # get the novel name, year it was written, and current color
     novel = request.POST.get('novel')
     novelYear = request.POST.get('novelYear')
+    curColor = request.POST.get("curColor")
+
     
     # get the filepath of the novel
     module_dir = os.path.dirname(__file__)  
@@ -57,5 +94,7 @@ def getNovel(request):
     context = dict()
     context["bentString"] = open(file_path, "r").read()
     context["year"] = novelYear
+    context["defaultText"] = getDefaultText(False)
+    context["curColor"] = curColor
     return render(request, 'genderbender/index.html',context)
 
