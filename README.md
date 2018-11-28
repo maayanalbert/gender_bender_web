@@ -37,12 +37,12 @@ Relevant files: gender_bender_web/genderbender/genderBender.py
 
 If we were to just use the raw text in its original format (a string), replacing the words in the text would be extremely costly because one would have to rewrite the entire string for each word replacement. Therefore, I created a custom stringsplit function that clumps all words together and isolated all non-letters (eg: ["Harry", ",", " ", "the", " ", "wizard"]). This made replacements much less costly and made it easier to search for names in order to compile the name dictionary.
 
-### 2) Compiling pronoun dictionary (eg dict = his:here, man:woman, Mr.:Mrs.)
+### 2) Compiling pronoun dictionary (eg dict = {his:her, man:woman, Mr.:Mrs.})
 Relevant files: gender_bender_web/genderbender/pronounDictMaker.py; gender_bender_web/genderbender/pronoun_corpus/pronouns.txt
 
 This step was pretty straightforward. I simply read in a txt file containing matching pronouns and compiling a dictionary. A consideration when adding pronouns to the dictionary was making sure I had all iterations of the word (uppercase, lowercase, plural, etc). 
 
-### 3) Compiling name dictionary (eg dict = Olive:Oliver, Hermione:Hermon, Mary:Marcus)
+### 3) Compiling name dictionary (eg dict = {Olive:Oliver, Hermione:Hermon, Mary:Marcus})
 Relevant files: gender_bender_web/genderbender/nameDictMaker.py; gender_bender_web/genderbender/name_corpus/*
 
 This was the most challenging part of the project. I struggled to find a decent corpus of names until I came acccross records from the US Social Security Administristration that contained the 10000 most popular baby names arranged in order of populary since 1880 (https://www.ssa.gov/oact/babynames/limits.html). 
