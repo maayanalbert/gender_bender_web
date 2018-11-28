@@ -12,9 +12,10 @@ def getDefaultText(starting):
         line1 = "Hello and welcome to Gender Bender!" + "\n\n"
         line2 = "To get started, type some text in here or click on one of"
         line3 = " the links to the right. Optionally, input the year the text"
-        line4 = " was written in to get historically accurate names. Then, click"
-        line5 = " the button below to start genderbending!"
-        return line1 + line2 + line3 + line4 + line5
+        line4 = " was written in to get historically accurate names."
+        line5 = " Also, be sure to capitalize names to ensure they're recognized"
+        line6 = "\n\nThen, click the button below to start genderbending!"
+        return line1 + line2 + line3 + line4 + line5 + line6
     else:
         return "Write some text here..."
 
