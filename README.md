@@ -1,5 +1,7 @@
 # Gender Bender for web
-This is a website that flips text so that all male character become female and all female characters become male. At a high level, it does so by switching out all of the male pronouns and names for female pronouns and names and vice versa. The live site can be found at: https://nameless-shelf-22750.herokuapp.com/
+Live site: https://nameless-shelf-22750.herokuapp.com/
+
+This is a website that flips text so that all male character become female and all female characters become male. At a high level, it does so by switching out all of the male pronouns and names for female pronouns and names and vice versa. 
 
 ### Context
 This is the second iteration of a project concieved in a hybrid art and computer science class. The original prompt was to create a book consisting of generative text. My book contained genderbent versions of classic novels. The original project can be seen at: http://cmuems.com/2018/60212f/yalbert/11/16/yalbert-book/
