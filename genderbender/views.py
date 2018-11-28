@@ -40,11 +40,20 @@ def bendInput(request):
 
     return render(request, 'genderbender/index.html',context)
 
+# inserts the contents of a novel into the text inpu box
+# INPUT: the name of the text file of the novel and the year it was written
+# OUTPUT: the contents of the novel and the year it was written
 def getNovel(request):
+
+    # get the novel name and year it was written
     novel = request.POST.get('novel')
     novelYear = request.POST.get('novelYear')
+    
+    # get the filepath of the novel
     module_dir = os.path.dirname(__file__)  
     file_path = os.path.join(module_dir, "novels/" + novel + ".txt")
+    
+    # populate the response data
     context = dict()
     context["bentString"] = open(file_path, "r").read()
     context["year"] = novelYear
