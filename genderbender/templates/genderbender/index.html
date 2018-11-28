@@ -61,7 +61,7 @@
       <div class="col">
 
         <!-- The 'populate with' title -->
-        <div class="col-md-6 pb-3" style="color: rgb(100, 100, 100)">Populate with:</div>
+        <div class="col-md-6 pb-3 ml-2" style="color: rgb(100, 100, 100)">Populate with:</div>
         
         <!-- The pride and prejudice link -->
         <form  class="col-md-3" method='post' action={% url 'get_novel' %}>
@@ -69,7 +69,7 @@
           <input type = "hidden" name="novel" value="pride_and_prejudice">
           <input type = "hidden" name="curColor" value="{{curColor}}">
           <button type="submit" class="btn"style="background-color:
-            rgb(255, 255, 255);color: {{curColor}};">- Pride and Prejudice</button>
+            rgb(255, 255, 255);color: {{curColor}};">Pride and Prejudice</button>
           {% csrf_token %}
         </form>
 
@@ -79,7 +79,7 @@
           <input type = "hidden" name="novel" value="the_great_gatsby">
           <input type = "hidden" name="curColor" value="{{curColor}}">
           <button type="submit" class="btn"style="background-color:
-            rgb(255, 255, 255);color: {{curColor}};">- The Great Gatsby</button>
+            rgb(255, 255, 255);color: {{curColor}};">The Great Gatsby</button>
           {% csrf_token %}
         </form>
 
@@ -89,7 +89,7 @@
           <input type = "hidden" name="novel" value="mary_poppins">
           <input type = "hidden" name="curColor" value="{{curColor}}">
           <button type="submit" class="btn"style="background-color:
-            rgb(255, 255, 255);color: {{curColor}};">- Mary Poppins</button>
+            rgb(255, 255, 255);color: {{curColor}};">Mary Poppins</button>
           {% csrf_token %}
         </form>
 
@@ -99,7 +99,7 @@
           <input type = "hidden" name="novel" value="harry_potter">
           <input type = "hidden" name="curColor" value="{{curColor}}">
           <button type="submit" class="btn"style="background-color:
-            rgb(255, 255, 255);color: {{curColor}};">- Harry Potter</button>
+            rgb(255, 255, 255);color: {{curColor}};">Harry Potter</button>
           {% csrf_token %}
         </form>
 
