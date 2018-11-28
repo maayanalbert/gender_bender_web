@@ -6,40 +6,10 @@ from .nameDictMaker import getNameDict
 defaultInputPath = "../original_texts/"
 defaultOutputPath = "../bent_texts/"
 
-# genderbends the contents of a txt file
-# INPUT: the name of the file, optionally the year it was written, filepaths
-# for input and output files
-# OUTPUT: nothing, creates the genderbent text file in the desired filepath 
-def bendFile(fileName, year = 2018, 
-    inputFilePath = defaultInputPath, 
-    outputFilePath = defaultOutputPath):
-
-    # get and read the original text
-    origFile = open(inputFilePath + fileName,"r")
-    rawContents = origFile.read()
-
-    # bend the contents
-    bentContents = bend(rawContents, int(year))
-
-    # get rid of the type part of the file name
-    fileName = fileName.split(".")[0]
-
-    # create a new file and put the contents in there
-    bentFile= open(outputFilePath + fileName + "_genderbent.txt","w+")
-    bentFile.write(bentContents)
-    bentFile.close()
-
-# genderbends a string input and returns the results
-# INPUT: a string of the original text
-# OUTPUT: the genderbent text
-def bendString(originalText, year = 2018):
-    bentText = bend(originalText, year)
-    return bentText
-
 # genderbends the text
 # INPUT: original string of contents, the year it was written
 # OUTPUT: a string of genderbent contents
-def bend(rawContents, year):
+def bend(rawContents, year = 2018):
     
     # get the contents in a parseable form
     wordArr = seperateWords(rawContents)
@@ -71,12 +41,13 @@ def seperateWords(rawContents):
         # isolate man and woman when it appears at the end of a word
         manLen = len("man")
         womanLen = len("woman")
-        if(i < len(rawContents)-manLen and 
-            (i<2 or rawContents[i-2:i] != "wo" and rawContents[i-2:i] != "hu") and
+
+        if(i <= len(rawContents)-manLen and 
+            (len(wordArr[-1]) == 0 or len(wordArr[-1]) > 3) and
             (rawContents[i:i+manLen] == "man" or rawContents[i:i+manLen] == "men")):
                 wordArr.append(char)
 
-        elif(i < len(rawContents)-womanLen and 
+        elif(i <= len(rawContents)-womanLen and 
             (rawContents[i:i+womanLen] == "woman" or rawContents[i:i+womanLen] == "women")):
                 wordArr.append(char)
 

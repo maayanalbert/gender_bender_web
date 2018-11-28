@@ -17,8 +17,6 @@ groom,bride
 brother,sister
 buck,doe
 earl,countess
-fox,vixen
-horse,mare
 lad,lass
 monk,nun,o
 papa,mama
@@ -64,7 +62,6 @@ sire,dam
 son,daughter
 son-in-law,daughter-in-law
 sorcerer,sorceress
-stallion,mare
 stepfather,stepmother
 stepson,stepdaughter
 steward,stewardess
