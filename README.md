@@ -26,33 +26,34 @@ Major considerations I had when building this were efficiency (because I was pot
 There are four primary stages to this genderbending algorithm, 1) parsing the text 2) compiling a dictionary of pronouns mapped to their opposite gendered equivalents 3) compiling a dictionary of names mapped to their opposite gendered equivalents and 4) replacing all of the existing names and pronouns based on the aforementioned dictionaries.
 
 ### 1) Parsing the text
+If we were to just use the raw text in its original format (a string), replacing the words in the text would be extremely costly because one would have to rewrite the entire string for each word replacement. Therefore, I created a custom stringsplit function that clumps all words together and isolated all non-letters (eg: ["Harry", ",", " ", "the", " ", "wizard"]). This made replacements much less costly and made it easier to search for names in order to compile the name dictionary.
+
 Relevant files: 
 - gender_bender_web/genderbender/genderBender.py
 
-If we were to just use the raw text in its original format (a string), replacing the words in the text would be extremely costly because one would have to rewrite the entire string for each word replacement. Therefore, I created a custom stringsplit function that clumps all words together and isolated all non-letters (eg: ["Harry", ",", " ", "the", " ", "wizard"]). This made replacements much less costly and made it easier to search for names in order to compile the name dictionary.
-
 ### 2) Compiling pronoun dictionary (eg dict = {his:her, man:woman, Mr.:Mrs.})
+This step was pretty straightforward. I simply read in a txt file containing matching pronouns and compiling a dictionary. A consideration when adding pronouns to the dictionary was making sure I had all iterations of the word (uppercase, lowercase, plural, etc). 
+
 Relevant files: 
 - gender_bender_web/genderbender/pronounDictMaker.py; 
 - gender_bender_web/genderbender/pronoun_corpus/pronouns.txt
 
-This step was pretty straightforward. I simply read in a txt file containing matching pronouns and compiling a dictionary. A consideration when adding pronouns to the dictionary was making sure I had all iterations of the word (uppercase, lowercase, plural, etc). 
-
 ### 3) Compiling name dictionary (eg dict = {Olive:Oliver, Hermione:Hermon, Mary:Marcus})
+This was the most challenging part of the project. I struggled to find a decent corpus of names until I came acccross records from the US Social Security Administristration that contained the 10000 most popular baby names arranged in order of populary since 1880 (https://www.ssa.gov/oact/babynames/limits.html).
+
 Relevant files: 
 - gender_bender_web/genderbender/nameDictMaker.py; 
 - gender_bender_web/genderbender/name_corpus/*
-
-This was the most challenging part of the project. I struggled to find a decent corpus of names until I came acccross records from the US Social Security Administristration that contained the 10000 most popular baby names arranged in order of populary since 1880 (https://www.ssa.gov/oact/babynames/limits.html). 
 
 To find name replacements, I first iterated through the word array described above and picked out any word that appeared in the name file for the year the book was written. For each name found, I went through all of the opposite gendered names and used Levenshtein's distance algorithms to create a shortlist of names that were similar to the original. I then picked the most popular name from the shortlist and mapped it to the original name.
 
 To speed up this process, I partitioned the names from the corpus into subdictionaries based first letter (eg. A={Amy, Amanda, Ada}, B={Bernadine, Becky}, etc). Therefore, in order to find the opposite gendered equivalent, I only had to look through the names with the same letter as the original instead of all of them.
 
 ### 4) Replacing words
+This part was also quite straightforward. I simply iterated through the word array and if a word showed up as a key in either dictionary, I mapped it to its corresponding value.
+
 Relevant files:
 - gender_bender_web/genderbender/genderBender.py
-This part was also quite straightforward. I simply iterated through the word array and if a word showed up as a key in either dictionary, I mapped it to its corresponding value.
 
 
 # What I liked about this project
