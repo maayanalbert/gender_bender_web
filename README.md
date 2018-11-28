@@ -41,13 +41,13 @@ Relevant files:
 ### 3) Compiling name dictionary (eg dict = {Olive:Oliver, Hermione:Hermon, Mary:Marcus})
 This was the most challenging part of the project. I struggled to find a decent corpus of names until I came acccross records from the US Social Security Administristration that contained the 10000 most popular baby names arranged in order of populary since 1880 (https://www.ssa.gov/oact/babynames/limits.html).
 
-Relevant files: 
-- gender_bender_web/genderbender/nameDictMaker.py; 
-- gender_bender_web/genderbender/name_corpus/*
-
 To find name replacements, I first iterated through the word array described above and picked out any word that appeared in the name file for the year the book was written. For each name found, I went through all of the opposite gendered names and used Levenshtein's distance algorithms to create a shortlist of names that were similar to the original. I then picked the most popular name from the shortlist and mapped it to the original name.
 
 To speed up this process, I partitioned the names from the corpus into subdictionaries based first letter (eg. A={Amy, Amanda, Ada}, B={Bernadine, Becky}, etc). Therefore, in order to find the opposite gendered equivalent, I only had to look through the names with the same letter as the original instead of all of them.
+
+Relevant files: 
+- gender_bender_web/genderbender/nameDictMaker.py; 
+- gender_bender_web/genderbender/name_corpus/*
 
 ### 4) Replacing words
 This part was also quite straightforward. I simply iterated through the word array and if a word showed up as a key in either dictionary, I mapped it to its corresponding value.
