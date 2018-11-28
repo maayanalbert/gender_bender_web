@@ -7,7 +7,7 @@ This is the second iteration of a project concieved in a hybrid art and computer
 The the original project occcured over a week long assignment. This second iteration involved improving the genderbending algorithm, reorganizing the code, and formatting it for the web. This was done over a couple of days.
 
 ### Frameworks
-The web app was build in Django and deployed using Heroku.
+The web app was built in Django and deployed using Heroku.
 
 ### Files of Interest
 Many of the files in this repository are a part of the basic Django framework. The interesting ones are:
