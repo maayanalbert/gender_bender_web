@@ -3,9 +3,6 @@ import string
 from .pronounDictMaker import getPronounDict
 from .nameDictMaker import getNameDict
 
-defaultInputPath = "../original_texts/"
-defaultOutputPath = "../bent_texts/"
-
 # genderbends the text
 # INPUT: original string of contents, the year it was written
 # OUTPUT: a string of genderbent contents
