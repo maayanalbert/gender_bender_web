@@ -71,7 +71,7 @@ def getPlural(word):
         return word
 
     # if the word ends in "ss", as in "countess", add "es"
-    if(len(word) > 2 and word[-2:] == "ss"):
+    if(len(word) > 2 and (word[-2:] == "ss" or word[-2:] == "SS")):
         return word + "es"
 
     # otherwise just add "s"
