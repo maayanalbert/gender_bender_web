@@ -1,4 +1,4 @@
-from .pronounDictMaker import createEntries
+from .pronounDictMaker import createEntries, getPlural
 import os
 
 # creates a dictionary of names mapped to their opposite gendered equivalents
@@ -90,14 +90,13 @@ def processRawNames(rawContents):
             d = allFemaleNames
 
         # select the correct subdictionary based on the first letter 
-        if(firstLetter in d):
-            firstLetterDict = d[firstLetter]
-        else:
+        if(firstLetter not in d):
             d[firstLetter] = dict()
-            firstLetterDict = d[firstLetter]
+        firstLetterDict = d[firstLetter]
 
         # map the name to its popularity
         firstLetterDict[name] = int(popularity)
+
 
     return (allMaleNames, allFemaleNames)
 
@@ -117,17 +116,29 @@ def getNamesInText(wordArr, allMaleNames, allFemaleNames):
         if(len(word) > 0):
             firstLetter = word[0]
 
+            # account for words in all caps
+            capitalized = False
+            if(word.upper() == word):
+                capitalized = True
+                word = word.lower().capitalize()
+
             # see if the first letter matches any sub dictionaries
             if(firstLetter in allMaleNames):
                 firstLetterDict = allMaleNames[firstLetter]
 
                 # add it if its in the subdict and above the minimum popularity
                 if(word in firstLetterDict and firstLetterDict[word] > minPopularity):
-                    namesInText[word] = "M"
+                    if(capitalized):
+                        namesInText[word.upper()] = "M"
+                    else:
+                        namesInText[word] = "M"
             if(firstLetter in allFemaleNames):
                 firstLetterDict = allFemaleNames[firstLetter]
                 if(word in firstLetterDict and firstLetterDict[word] > minPopularity):
-                    namesInText[word] = "F"
+                    if(capitalized):
+                        namesInText[word.upper()] = "F"
+                    else:
+                        namesInText[word] = "F"
 
     return namesInText
 
