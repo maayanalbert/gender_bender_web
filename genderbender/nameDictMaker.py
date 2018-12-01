@@ -140,7 +140,7 @@ def getNamesInText(wordArr, allMaleNames, allFemaleNames):
                     else:
                         namesInText[word] = "F"
 
-            # check if they're in both
+            # check if the name is in both male and female dictionaries
             if(firstLetter in allMaleNames and firstLetter in allFemaleNames):
                 maleFirstLetterDict = allMaleNames[firstLetter]
                 femaleFirstLetterDict = allFemaleNames[firstLetter]
