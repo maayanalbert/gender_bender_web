@@ -140,6 +140,24 @@ def getNamesInText(wordArr, allMaleNames, allFemaleNames):
                     else:
                         namesInText[word] = "F"
 
+            # check if they're in both
+            if(firstLetter in allMaleNames and firstLetter in allFemaleNames):
+                maleFirstLetterDict = allMaleNames[firstLetter]
+                femaleFirstLetterDict = allFemaleNames[firstLetter]
+                if(word in femaleFirstLetterDict and 
+                    word in maleFirstLetterDict and
+                    max(maleFirstLetterDict[word], femaleFirstLetterDict[word] > minPopularity)):
+                    if(maleFirstLetterDict[word] > femaleFirstLetterDict[word]):
+                        if(capitalized):
+                            namesInText[word.upper()] = "M"
+                        else:
+                            namesInText[word] = "M"  
+                    else:
+                        if(capitalized):
+                            namesInText[word.upper()] = "F"
+                        else:
+                            namesInText[word] = "F"                                   
+
     return namesInText
 
 # get the opposite gendered equivalent of a given name
