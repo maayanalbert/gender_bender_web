@@ -1,5 +1,5 @@
 # Gender Bender for web
-Live site (may take a moment to load): https://nameless-shelf-22750.herokuapp.com/
+Live site (may take a few moments to load): https://nameless-shelf-22750.herokuapp.com/
 
 This is a website that flips text so that all male character become female and all female characters become male. At a high level, it does so by switching out all of the male pronouns and names for female pronouns and names and vice versa. 
 
